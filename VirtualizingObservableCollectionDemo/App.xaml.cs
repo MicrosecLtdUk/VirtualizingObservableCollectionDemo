@@ -1,6 +1,9 @@
 ﻿// <copyright file="App.xaml.cs" company = "Microsec Ltd">
 // Copyright Microsec Ltd.
 // </copyright>
+using System;
+using AlphaChiTech.Virtualization;
+using FreshMvvm;
 using Xamarin.Forms;
 
 namespace VirtualizingObservableCollectionDemo
@@ -11,7 +14,20 @@ namespace VirtualizingObservableCollectionDemo
         {
             InitializeComponent ();
 
-            MainPage = new VirtualizingObservableCollectionDemoPage ();
+            // Initialise the VirtualizationManager - this is used to clean up pages when they're no longer needed
+            if (!VirtualizationManager.IsInitialized) {
+                VirtualizationManager.Instance.UIThreadExcecuteAction = (a) => Device.BeginInvokeOnMainThread (a);
+                Device.StartTimer (
+                    TimeSpan.FromSeconds (1),
+                    () => {
+                        VirtualizationManager.Instance.ProcessActions (); return true;
+                    });
+            }
+
+            // Get our main page, and navigator
+            var page = FreshPageModelResolver.ResolvePageModel<MainPageModel> ();
+            var navContainer = new FreshNavigationContainer (page);
+            MainPage = navContainer;
         }
 
         protected override void OnStart ()

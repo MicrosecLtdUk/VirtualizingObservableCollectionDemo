@@ -4,11 +4,22 @@
 using System;
 namespace VirtualizingObservableCollectionDemo
 {
+    /// <summary>
+    /// A simple class to hold some data to display
+    /// </summary>
     public class Employee
     {
-        public Employee ()
-        {
+        #region Properties
+        public String Name {
+            get;
+            set;
         }
+
+        public String Telephone {
+            get;
+            set;
+        }
+        #endregion Properties
     }
 }
 

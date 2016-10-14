@@ -1,15 +1,5 @@
 ﻿{
-  "knownAssemblies":[
-        {
-            "name": "SlideOverKit",
-            "types": null
-        },
-        {
-            "name": "SlideOverKit.iOS",
-            "types": null
-        }        
-    ],
-    "navigationPage" : {
+"navigationPage" : {
         "all" : "true"
     }
 }

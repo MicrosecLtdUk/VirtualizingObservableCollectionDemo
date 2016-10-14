@@ -2,7 +2,22 @@
 <ContentPage
 	xmlns ="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="VirtualizingObservableCollectionDemo.MainPage">
+	x:Class="VirtualizingObservableCollectionDemo.MainPage"
+		Title="Virtualized List">
 	<ContentPage.Content>
+		<StackLayout Orientation="Vertical">
+			<StackLayout Orientation="Horizontal">
+				<Label Text="Total Records:"/>
+			<Label Text="{Binding Count}"/>
+			</StackLayout>
+			<ListView ItemsSource="{Binding Employees}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<TextCell Text="{Binding Name}" Detail="{Binding Telephone}"/>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			<Label Text="{Binding Message}"/>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
